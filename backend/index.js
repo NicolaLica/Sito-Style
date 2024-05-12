@@ -1,5 +1,5 @@
 //qui scriviamo tutto il codice cors per gli accessi
-const port = process.env.PORT || 4000;
+const port = 4000;
 const express = require("express");
 const app = express();
 const nodemailer = require("nodemailer");
