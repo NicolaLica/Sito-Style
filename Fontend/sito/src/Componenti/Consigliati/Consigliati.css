@@ -1,0 +1,18 @@
+.cons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.cont_cons {
+  width: 100%;
+  padding: 40px 20px;
+}
+.nuovi {
+  font-size: 1.7rem;
+}
+@media (max-width: 1351px) {
+  .cont_pop {
+    width: 93%;
+  }
+}

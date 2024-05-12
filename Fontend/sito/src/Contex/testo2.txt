@@ -1,0 +1,263 @@
+import React, { createContext, useEffect, useState } from "react";
+
+export const ShopContext = createContext(null);
+const ShopContextProvider = (props) => {
+  const getDefaultCart = (prodotti) => {
+    let cart = {};
+    prodotti.forEach((product) => {
+      cart[product._id] = { quantity: 0, size: null };
+    });
+    return cart;
+  };
+
+  const getDefaultLike = (prodotti) => {
+    let like = {};
+    prodotti.forEach((product) => {
+      like[product._id] = false; // Inizializza con false, indicando "non piaciuto"
+    });
+    return like;
+  };
+
+  const [prodotti, setProdotti] = useState([]);
+  const [cartItems, setCartItems] = useState({});
+  const [likeItems, setLikeItems] = useState({});
+  const [admin, setAdmin] = useState(false);
+  const [productsLoaded, setProductsLoaded] = useState(false);
+  const [loading, setLoading] = useState(true); // Stato di caricamento
+  useEffect(() => {
+    setLoading(true);
+    fetch("http://localhost:4000/allproducts")
+      .then((response) => response.json())
+      .then((data) => {
+        setProdotti(data);
+        setCartItems(getDefaultCart(data)); // Imposta il carrello predefinito
+        setLikeItems(getDefaultLike(data)); // Imposta i preferiti predefiniti
+        setProductsLoaded(true);
+
+        // Effettua la chiamata per ottenere il carrello solo dopo aver impostato i prodotti
+        if (localStorage.getItem("auth-token")) {
+          fetch("http://localhost:4000/getcart", {
+            method: "POST",
+            headers: {
+              Accept: "application/form-data",
+              "auth-token": `${localStorage.getItem("auth-token")}`,
+              "Content-Type": "application/json",
+            },
+            body: "",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Dati del carrello:", data); // Aggiungi questo log per verificare la risposta
+
+              // Costruisci correttamente l'oggetto cartItems utilizzando i dati dal backend
+              const updatedCartItems = {};
+              for (const itemId in data) {
+                const itemData = data[itemId];
+                updatedCartItems[itemId] = {
+                  quantity: itemData.quantity,
+                  size: itemData.size,
+                };
+              }
+              setCartItems(updatedCartItems); // Imposta il carrello con i dati aggiornati
+            });
+          fetch("http://localhost:4000/getlike", {
+            method: "POST",
+            headers: {
+              Accept: "application/form-data",
+              "auth-token": `${localStorage.getItem("auth-token")}`,
+              "Content-Type": "application/json",
+            },
+            body: "",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Dati nei like:", data); // Aggiungi questo log per verificare la risposta
+
+              // Costruisci correttamente l'oggetto cartItems utilizzando i dati dal backend
+              const updatedLikeItems = {};
+              for (const itemId in data) {
+                const quantity = data[itemId];
+
+                updatedLikeItems[itemId] = { quantity: quantity };
+              }
+              setLikeItems(updatedLikeItems); // Imposta il carrello con i dati aggiornati
+            });
+
+          fetch("http://localhost:4000/getadmin", {
+            method: "POST",
+            headers: {
+              Accept: "application/form-data",
+              "auth-token": `${localStorage.getItem("auth-token")}`,
+              "Content-Type": "application/json",
+            },
+            body: "",
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Dati admin", data);
+              setAdmin(data);
+            })
+            .catch((error) => {
+              console.error(
+                "Errore nel recupero dello status di amministratore:",
+                error
+              );
+            })
+            .finally(() => {
+              setLoading(false); // Imposta lo stato di caricamento su false una volta completata la fetch
+            });
+        } else {
+          setLoading(false); // Imposta lo stato di caricamento su false se non c'è un token di autenticazione
+        }
+      });
+  }, []);
+  console.log(admin + "dati dell'admin");
+  const addToCart = (itemId, quantity = 1, size = "") => {
+    // Imposta 1 come valore predefinito per la quantità
+    setCartItems((prev) => {
+      const item = prev[itemId] || { quantity: 0, size: "" };
+      const newItemQuantity = item.quantity + quantity; // Calcola la nuova quantità aggiungendo la quantità desiderata
+      const newItem = { ...item, quantity: newItemQuantity, size: size }; // Aggiorna la quantità dell'elemento nel carrello
+      return { ...prev, [itemId]: newItem };
+    });
+
+    if (localStorage.getItem("auth-token")) {
+      fetch("http://localhost:4000/addtocart", {
+        method: "POST",
+        headers: {
+          Accept: "application/form-data",
+          "auth-token": `${localStorage.getItem("auth-token")}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          itemId: itemId,
+          quantity: quantity,
+          size: size,
+        }), // Passa la quantità al backend
+      })
+        .then((response) => response.json())
+        .then((data) => console.log("ciao" + data));
+    }
+  };
+
+  const addToLike = (itemId) => {
+    setLikeItems((prev) => {
+      return { ...prev, [itemId]: true }; // Imposta true, indicando "piaciuto"
+    });
+    if (localStorage.getItem("auth-token")) {
+      fetch("http://localhost:4000/addtolike", {
+        method: "POST",
+        headers: {
+          Accept: "application/form-data",
+          "auth-token": `${localStorage.getItem(`auth-token`)}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ itemId: itemId }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log("ciao" + data));
+    }
+  };
+
+  const removeFromCart = (itemId) => {
+    setCartItems((prev) => {
+      const item = prev[itemId];
+      if (item.quantity > 1) {
+        return { ...prev, [itemId]: { ...item, quantity: item.quantity - 1 } };
+      } else {
+        return { ...prev, [itemId]: { ...item, quantity: 0, size: null } };
+      }
+    });
+    if (localStorage.getItem("auth-token")) {
+      fetch("http://localhost:4000/removefromcart", {
+        method: "POST",
+        headers: {
+          Accept: "application/form-data",
+          "auth-token": `${localStorage.getItem(`auth-token`)}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ itemId: itemId }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log("ciao" + data));
+    }
+  };
+
+  const removeFromLike = (itemId) => {
+    setLikeItems((prev) => {
+      return { ...prev, [itemId]: false }; // Imposta false, indicando "non piaciuto"
+    });
+    if (localStorage.getItem("auth-token")) {
+      fetch("http://localhost:4000/removefromlike", {
+        method: "POST",
+        headers: {
+          Accept: "application/form-data",
+          "auth-token": `${localStorage.getItem(`auth-token`)}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ itemId: itemId }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log("ciao" + data));
+    }
+  };
+
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const itemId in cartItems) {
+      if (cartItems[itemId].quantity > 0) {
+        let itemInfo = prodotti.find((product) => product._id === itemId);
+
+        totalAmount += itemInfo.price * cartItems[itemId].quantity;
+      }
+    }
+    return totalAmount.toFixed(2);
+  };
+
+  const getTotalCartItems = () => {
+    let totalItem = 0;
+    for (const itemId in cartItems) {
+      if (cartItems.hasOwnProperty(itemId)) {
+        totalItem += cartItems[itemId]?.quantity ?? 0;
+      }
+    }
+    return totalItem;
+  };
+
+  const getTotalLikeItems = () => {
+    let totalLiked = 0;
+    for (const itemId in likeItems) {
+      if (likeItems[itemId]) {
+        totalLiked++;
+      }
+    }
+    return totalLiked;
+  };
+
+  const contextValue = {
+    prodotti,
+    cartItems,
+    likeItems,
+    addToCart,
+    removeFromCart,
+    addToLike,
+    removeFromLike,
+    getTotalCartAmount,
+    getTotalCartItems,
+    getTotalLikeItems,
+    productsLoaded,
+    admin,
+  };
+
+  return (
+    <ShopContext.Provider value={contextValue}>
+      {loading ? ( // Mostra un indicatore di caricamento durante il recupero dei dati
+        <div>Loading...</div>
+      ) : (
+        props.children // Renderizza i componenti figlio solo dopo che i dati sono stati caricati
+      )}
+    </ShopContext.Provider>
+  );
+};
+
+export default ShopContextProvider;

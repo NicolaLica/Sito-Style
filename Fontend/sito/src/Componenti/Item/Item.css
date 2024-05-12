@@ -1,0 +1,83 @@
+.lik2 {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.item {
+  position: relative;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 30%;
+  gap: 10px !important;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.immagine {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 80%;
+}
+.immagine img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: 0.3s;
+}
+@media (min-width: 770px) {
+  .immagine img:hover {
+    transform: scale(1.1);
+  }
+}
+.cuoreLike {
+  padding: 0;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: black;
+  transition: 0.2s;
+  z-index: 30;
+}
+.cuoreLike:hover .c {
+  color: #ffe817;
+  transition: 0.2s;
+}
+.c2 {
+  color: #ffe817;
+  transform: translateY(2px);
+}
+.nome {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.prezzo {
+  font-size: 1.6rem !important;
+  color: #979797 !important;
+}
+
+@media (max-width: 860px) {
+  .item {
+    width: 49%;
+  }
+}
+@media (max-width: 560px) {
+  .item {
+    width: 100%;
+  }
+}

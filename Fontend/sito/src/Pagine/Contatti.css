@@ -1,0 +1,44 @@
+.links2 {
+  width: 100%;
+  background-color: white;
+
+  max-width: 1450px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  padding: 20px;
+  gap: 7px;
+  align-items: center;
+  color: #7e7e7e;
+}
+.sedi {
+  width: 100%;
+  max-width: 1450px;
+  margin: auto;
+  padding: 20px;
+}
+.sedi_tit {
+  font-size: 2rem;
+  font-weight: bold;
+  border-bottom: 5px solid black;
+  width: 300px;
+  padding-bottom: 15px;
+}
+.sedi_sedi {
+  font-size: 1.3rem;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.sedi__1 {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.bol {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

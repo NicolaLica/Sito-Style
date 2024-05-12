@@ -1,0 +1,15 @@
+.cart_titolo {
+  padding: 50px 0 20px 0;
+  font-size: 2.2rem;
+  width: 50%;
+  margin: auto;
+  border-bottom: 1px solid #979797;
+}
+.carrello_cart {
+  min-height: 90vh;
+}
+@media (max-width: 960px) {
+  .cart_titolo {
+    width: 90%;
+  }
+}

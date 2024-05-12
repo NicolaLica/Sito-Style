@@ -1,0 +1,149 @@
+.pag_corpo {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.tit_ord {
+  font-size: 2rem;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #979779;
+}
+.tit_ord h2:nth-child(2) {
+  cursor: pointer;
+}
+.pagina_personale {
+  margin-bottom: 20px;
+  min-height: 100vh;
+}
+.prod_ord {
+  display: flex;
+  gap: 10px;
+}
+.point {
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+.menu_drop {
+  padding-top: 4px;
+}
+.prod_ord_img {
+  height: 70px;
+  width: 70px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.bold {
+  font-weight: bold;
+}
+.prod_ord_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cont_prod_ord {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dati_prod_ord {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.fine {
+  font-weight: 300;
+}
+.dati_prod_ord_int {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.flex {
+  border-bottom: 1px solid #979779;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+}
+.cont_ord {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  padding-bottom: 10px;
+}
+.inf_fin {
+}
+.inf_fin_intro {
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.font_grande {
+  font-size: 1.3rem;
+}
+.modal {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+  position: fixed;
+  backdrop-filter: blur(12px);
+  color: rgb(0, 0, 0);
+  top: 0;
+  left: 0;
+  font-size: 1.4rem;
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+}
+.modal button {
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.cont_bott {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.nessun_ordine {
+  width: 100%;
+  height: 50vh;
+  border: 1px solid #979797;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #979779;
+}
+@media (max-width: 970px) {
+  .pag_corpo {
+    width: 90%;
+  }
+}
+@media (max-width: 450px) {
+  .inf_fin_intro {
+    gap: 10px;
+  }
+  .tit_ord h2 {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,130 @@
+.hero_about {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background: url("../Componenti/Assets/Immagini/about_banner.jpg") no-repeat
+    center center;
+  background-size: cover;
+  display: flex;
+}
+.tit_about {
+  font-size: 16rem;
+  color: white;
+  font-weight: 900;
+  max-width: 1450px;
+  margin: auto;
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+  height: 100%;
+  align-items: end;
+  padding-bottom: 20px;
+}
+.about1 {
+  display: flex;
+  width: 100%;
+
+  margin: auto;
+  gap: 20px;
+}
+.about2 {
+  display: flex;
+  width: 100%;
+
+  margin: auto;
+  gap: 20px;
+}
+.about1_foto {
+  background: url("../Componenti/Assets/Immagini/about1.jpg") no-repeat center
+    center;
+  background-size: cover;
+  height: 90vh;
+  width: 100%;
+}
+.about2_foto {
+  background: url("../Componenti/Assets/Immagini/about2.jpg") no-repeat center
+    center;
+  background-size: cover;
+  height: 80vh;
+  width: 100%;
+}
+.about3_foto {
+  background: url("../Componenti/Assets/Immagini/about3.jpg") no-repeat center
+    center;
+  background-size: cover;
+  height: 90vh;
+  width: 100%;
+}
+.about1_testo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+  padding: 0 10px;
+  line-height: 25px;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+.about2_testo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 70%;
+  padding: 0 30px;
+  line-height: 25px;
+  font-weight: 300;
+}
+.about2_testo1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 1.1rem;
+}
+.about2_testo2 {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.about1_testo h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+@media (max-width: 860px) {
+  .about1 {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .about2 {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  .about1_testo {
+    width: 95%;
+    margin: auto;
+    padding: 0 10px;
+  }
+  .about2_testo {
+    width: 95%;
+    margin: auto;
+    padding: 0 10px;
+  }
+  .about1_foto {
+    height: 60vh;
+  }
+}
+@media (max-width: 800px) {
+  .tit_about {
+    font-size: 12rem;
+  }
+}
+@media (max-width: 600px) {
+  .tit_about {
+    font-size: 9rem;
+    padding-bottom: 90px;
+  }
+}
+@media (max-width: 450px) {
+  .tit_about {
+    font-size: 7rem;
+  }
+}

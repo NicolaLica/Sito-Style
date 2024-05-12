@@ -1,0 +1,47 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  width: 400px;
+  top: 0;
+  right: -100%;
+  padding: 40px 20px 20px 20px;
+  height: 100vh;
+  position: fixed;
+  background-color: white;
+  transition: 0.3s;
+  z-index: 100;
+}
+.apri .sidebar {
+  right: 0;
+}
+.side_menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.side_cont {
+  font-size: 1.3rem;
+  color: black;
+}
+
+.side_tit {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  border-bottom: 1px solid #979797;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.chiudi_am {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+@media (max-width: 760px) {
+  .sidebar {
+    width: 100%;
+  }
+}

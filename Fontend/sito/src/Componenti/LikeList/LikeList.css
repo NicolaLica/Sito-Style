@@ -1,0 +1,46 @@
+.lista_like {
+  height: 100%;
+  width: 100%;
+  max-width: 560px;
+  position: fixed;
+  background-color: white;
+  z-index: 10000;
+  right: -100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transition: 0.3s ease;
+  opacity: 0;
+}
+.classe2 .lista_like {
+  right: 0;
+  opacity: 1;
+}
+.tit_like {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 90%;
+  padding: 20px 0;
+  text-align: start;
+  border-bottom: 1px solid #979797;
+  display: flex;
+  justify-content: space-between;
+}
+.tit_like p {
+  font-size: 1.9rem;
+  color: #ffe817;
+  cursor: pointer;
+}
+.empty-list {
+  width: 90%;
+  border: 1px solid #979797;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #979797;
+}

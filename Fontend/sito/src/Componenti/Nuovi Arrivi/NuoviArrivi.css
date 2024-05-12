@@ -1,0 +1,21 @@
+.popolare {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1350px;
+  margin: auto;
+}
+.cont_pop {
+  width: 100%;
+  max-width: 1350px;
+  margin: auto;
+}
+.nuovi {
+  font-size: 1.7rem;
+}
+@media (max-width: 1351px) {
+  .cont_pop {
+    width: 93%;
+  }
+}
