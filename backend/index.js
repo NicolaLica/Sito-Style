@@ -46,7 +46,7 @@ app.post("/upload", upload.single("product"), (req, res) => {
     image_url: `https://style-concept-7f84.onrender.com/immagini/${req.file.filename}`,
   });
 });
-
+//ciao
 // schema per ogni prodotto
 const ProductSchema = new mongoose.Schema({
   // Non è necessario definire esplicitamente un campo "id",
