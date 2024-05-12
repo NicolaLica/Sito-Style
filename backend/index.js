@@ -43,7 +43,7 @@ app.use("/immagini", express.static("upload/immagini"));
 app.post("/upload", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `http://localhost:${port}/immagini/${req.file.filename}`,
+    image_url: `https://style-concept-7f84.onrender.com/immagini/${req.file.filename}`,
   });
 });
 

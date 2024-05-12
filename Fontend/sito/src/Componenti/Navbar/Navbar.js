@@ -25,13 +25,16 @@ const Navbar = () => {
 
         // Verifica se il token di autenticazione esiste
         if (token) {
-          const response = await fetch("http://localhost:4000/username", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              "auth-token": token,
-            },
-          });
+          const response = await fetch(
+            "https://style-concept-7f84.onrender.com/username",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": token,
+              },
+            }
+          );
           const data = await response.json();
           setUsername(data.username);
         } else {

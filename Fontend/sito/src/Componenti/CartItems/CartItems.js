@@ -62,14 +62,17 @@ const CartItems = () => {
     console.log("Tentativo di creazione dell'ordine...");
     console.log("Dati dell'ordine:", order);
     try {
-      const response = await fetch("http://localhost:4000/createorder", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": `${localStorage.getItem(`auth-token`)}`,
-        },
-        body: JSON.stringify(order),
-      });
+      const response = await fetch(
+        "https://style-concept-7f84.onrender.com/createorder",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": `${localStorage.getItem(`auth-token`)}`,
+          },
+          body: JSON.stringify(order),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Errore durante la creazione dell'ordine");

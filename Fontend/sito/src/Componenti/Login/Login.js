@@ -31,7 +31,7 @@ const Login = (props) => {
 
   const login = async () => {
     let responseData;
-    await fetch("http://localhost:4000/login", {
+    await fetch("https://style-concept-7f84.onrender.com/login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -86,7 +86,7 @@ const Login = (props) => {
     }
 
     let responseData;
-    await fetch("http://localhost:4000/signup", {
+    await fetch("https://style-concept-7f84.onrender.com/signup", {
       method: "POST",
       headers: {
         Accept: "application/form-data",

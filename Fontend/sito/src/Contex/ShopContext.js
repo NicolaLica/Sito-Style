@@ -24,7 +24,7 @@ const ShopContextProvider = (props) => {
   const [admin, setAdmin] = useState(false);
   const [productsLoaded, setProductsLoaded] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts")
+    fetch("https://style-concept-7f84.onrender.com/allproducts")
       .then((response) => response.json())
       .then((data) => {
         setProdotti(data);
@@ -34,7 +34,7 @@ const ShopContextProvider = (props) => {
 
         // Effettua la chiamata per ottenere il carrello solo dopo aver impostato i prodotti
         if (localStorage.getItem("auth-token")) {
-          fetch("http://localhost:4000/getcart", {
+          fetch("https://style-concept-7f84.onrender.com/getcart", {
             method: "POST",
             headers: {
               Accept: "application/form-data",
@@ -58,7 +58,7 @@ const ShopContextProvider = (props) => {
               }
               setCartItems(updatedCartItems); // Imposta il carrello con i dati aggiornati
             });
-          fetch("http://localhost:4000/getlike", {
+          fetch("https://style-concept-7f84.onrender.com/getlike", {
             method: "POST",
             headers: {
               Accept: "application/form-data",
@@ -80,7 +80,7 @@ const ShopContextProvider = (props) => {
               }
               setLikeItems(updatedLikeItems); // Imposta il carrello con i dati aggiornati
             });
-          fetch("http://localhost:4000/getadmin", {
+          fetch("https://style-concept-7f84.onrender.com/getadmin", {
             method: "POST",
             headers: {
               Accept: "application/form-data",
@@ -114,7 +114,7 @@ const ShopContextProvider = (props) => {
     });
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch("https://style-concept-7f84.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -137,7 +137,7 @@ const ShopContextProvider = (props) => {
       return { ...prev, [itemId]: true }; // Imposta true, indicando "piaciuto"
     });
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/addtolike", {
+      fetch("https://style-concept-7f84.onrender.com/addtolike", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -161,7 +161,7 @@ const ShopContextProvider = (props) => {
       }
     });
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch("https://style-concept-7f84.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -180,7 +180,7 @@ const ShopContextProvider = (props) => {
       return { ...prev, [itemId]: false }; // Imposta false, indicando "non piaciuto"
     });
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/removefromlike", {
+      fetch("https://style-concept-7f84.onrender.com/removefromlike", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
